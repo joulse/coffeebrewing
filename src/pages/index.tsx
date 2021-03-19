@@ -1,12 +1,24 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
-import React from 'react';
+import React, { useRef } from 'react';
+import { config, useSpring } from 'react-spring';
 
 export const Home: NextPage = () => {
+  const methods = useRef() as any;
+
+  const [y, setY] = useSpring(() => ({
+    immediate: false,
+    config: config.slow,
+    y: 0,
+    onFrame: (props: any) => {
+      window.scroll(0, props.y);
+    },
+  }));
+
   return (
     <React.Fragment>
       <div
-        className="container flex items-center h-screen mx-auto px-8"
+        className="container flex items-center lg:h-screen mx-auto px-8 mb-8"
         style={{
           backgroundImage: `url('/shape.svg')`,
           backgroundPosition: 'center',
@@ -23,20 +35,22 @@ export const Home: NextPage = () => {
               way and focus on what is most important, enjoying&nbsp;life and
               drinking coffee.
             </h2>
-            <a
-              href="#methods"
+            <button
               className="bg-black px-5 py-3 text-white rounded-lg hover:bg-gray-900 text-center"
+              onClick={() =>
+                setY({ y: methods.current.getBoundingClientRect().top })
+              }
             >
               Discover brewing methods
-            </a>
+            </button>
           </div>
           <div className="w-full lg:w-2/3 flex order-1 lg:order-2">
             <img alt="Coffee Brewing" src="/coffee.svg" />
           </div>
         </div>
       </div>
-      <div className="container flex flex-col items-center h-screen mx-auto px-8">
-        <h2 className="mb-6 text-4xl font-bold title-font" id="methods">
+      <div className="container flex flex-col items-center mx-auto px-8 mb-8">
+        <h2 className="mb-6 text-4xl font-bold title-font" ref={methods}>
           Brewing methods
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full">

@@ -52,13 +52,9 @@ export const FrenchPress: NextPage = () => {
       <div className="flex flex-col lg:flex-row items-center justify-between w-full">
         <div className="w-full lg:w-1/2 flex flex-col order-2 lg:order-1">
           <div className="mb-3">
-            <Link href="/">
-              <a className="flex items-center">
-                <h1 className="text-2xl font-bold md:text-8xl lg:text-6xl title-font">
-                  French Press
-                </h1>
-              </a>
-            </Link>
+            <h1 className="text-2xl font-bold md:text-8xl lg:text-6xl title-font">
+              French Press
+            </h1>
           </div>
           <p className="text-gray-600 mb-4">
             A French press, also known as a cafetière, cafetière à piston,

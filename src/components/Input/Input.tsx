@@ -11,7 +11,7 @@ export const Input = ({
 }: any) => {
   return (
     <div className="container">
-      <div className="flex">
+      <div className="flex mb-3">
         <div className="mb-3">
           <input
             min="1"
