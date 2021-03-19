@@ -1,3 +1,5 @@
+import { animated } from 'react-spring';
+
 export const Input = ({
   cups,
   grounds,
@@ -41,21 +43,21 @@ export const Input = ({
           <div className="bg-white rounded-lg p-5 shadow-lg">
             <span className="flex justify-center text-xs">Temperature</span>
             <span className="flex font-bold justify-center">
-              <span>{temperature}</span>
+              <animated.span>{temperature}</animated.span>
               <span>˚C</span>
             </span>
           </div>
           <div className="bg-white rounded-lg p-5 shadow-lg">
             <span className="flex justify-center text-xs">Total Water</span>
             <span className="flex font-bold justify-center">
-              <span>{water}</span>
+              <animated.span>{water}</animated.span>
               <span>g</span>
             </span>
           </div>
           <div className="bg-white rounded-lg p-5 shadow-lg">
             <span className="flex justify-center text-xs">Coffee Grounds</span>
             <span className="flex font-bold justify-center">
-              <span>{grounds}</span>
+              <animated.span>{grounds}</animated.span>
               <span>g</span>
             </span>
           </div>

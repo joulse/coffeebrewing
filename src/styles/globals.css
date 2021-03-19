@@ -14,6 +14,10 @@ h1 {
   font-family: 'Playfair Display', serif;
 }
 
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;

@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
-import { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
+import { animated, useSpring } from 'react-spring';
 import Input from '../../components/Input/Input';
 import Steps from '../../components/Steps/Steps';
 
@@ -9,6 +10,21 @@ export const FrenchPress: NextPage = () => {
   const [grounds, setGrounds] = useState(23);
   const [water, setWater] = useState(180);
   const temperature = 90;
+
+  const props = useSpring({
+    firstPressPour: 70,
+    finalPressPour: water - 70,
+    grounds: grounds,
+    temperature: temperature,
+    water: water,
+    from: {
+      firstPressPour: 0,
+      finalPressPour: 0,
+      grounds: 0,
+      temperature: 0,
+      water: 0,
+    },
+  });
 
   const onChange = useCallback(e => {
     let value = e.target.value;
@@ -52,16 +68,58 @@ export const FrenchPress: NextPage = () => {
           </p>
           <Input
             cups={cups}
-            grounds={grounds}
+            grounds={props.grounds.interpolate((x: any) => x.toFixed(0))}
             onChange={onChange}
             onCupsChange={onCupsChange}
-            temperature={temperature}
+            temperature={props.temperature.interpolate((x: any) =>
+              x.toFixed(0)
+            )}
             value={cups}
-            water={water}
+            water={props.water.interpolate((x: any) => x.toFixed(0))}
           />
         </div>
         <div className="w-full lg:w-1/2 flex order-1 mb-3 lg:mb-0 lg:order-2 lg:ml-4">
-          <Steps grounds={grounds} water={water} />
+          <Steps
+            children={
+              <React.Fragment>
+                <li className="mb-5">Place the press on the scale and tare</li>
+                <li className="mb-5">
+                  Heat the water in the kettle
+                  <span className="text-xs flex mt-1">
+                    Between 88 and 92°C depending on how your coffee is roasting
+                  </span>
+                </li>
+                <li className="mb-5">Pour the coffee in the press</li>
+                <li className="mb-5">
+                  First pour
+                  <div className="flex mt-1 text-xl font-bold font-display">
+                    <animated.span>
+                      {props.firstPressPour.interpolate((x: any) =>
+                        x.toFixed(0)
+                      )}
+                    </animated.span>
+                    <span className="ml-1">g</span>
+                  </div>
+                </li>
+                <li className="mb-5">Let rest 30 sec</li>
+                <li className="mb-5">
+                  Final pour
+                  <div className="flex mt-1 text-xl font-bold font-display">
+                    <animated.span>
+                      {props.finalPressPour.interpolate((x: any) =>
+                        x.toFixed(0)
+                      )}
+                    </animated.span>
+                    <span className="ml-1">g</span>
+                  </div>
+                </li>
+                <li className="mb-5">Let rest 3 min 30</li>
+                <li className="mb-5">Enjoy!</li>
+              </React.Fragment>
+            }
+            grounds={grounds}
+            water={water}
+          />
         </div>
       </div>
     </div>
