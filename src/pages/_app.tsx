@@ -34,11 +34,27 @@ export const App = ({ Component, pageProps }: AppProps) => {
       </Head>
       <div>
         <header className="container mx-auto flex flex-wrap py-5 px-8 items-start">
-          <Link href="/">
-            <a className="flex title-font font-bold text-black hover:text-gray-900">
-              <span className="text-xl">Coffee Brewing</span>
-            </a>
-          </Link>
+          <div className="flex items-center justify-between flex-wrap">
+            <div className="mr-6">
+              <Link href="/">
+                <a className="flex title-font font-bold text-black tracking-tight text-xl hover:text-gray-900">
+                  Coffee Brewing
+                </a>
+              </Link>
+            </div>
+            <nav className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+              <div className="text-sm lg:flex-grow">
+                <Link href="/methods/chemex">
+                  <a className="mr-4 text-black hover:text-gray-900">Chemex</a>
+                </Link>
+                <Link href="/methods/frenchpress">
+                  <a className="mr-4 text-black hover:text-gray-900">
+                    French Press
+                  </a>
+                </Link>
+              </div>
+            </nav>
+          </div>
         </header>
         <Component {...pageProps} />
       </div>

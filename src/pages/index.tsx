@@ -54,6 +54,11 @@ export const Home: NextPage = () => {
           Brewing methods
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full">
+          <Link href="/methods/chemex">
+            <a className="bg-black hover:bg-gray-900 h-96 rounded-2xl flex items-end">
+              <span className="mb-4 ml-4 text-white font-medium">Chemex</span>
+            </a>
+          </Link>
           <Link href="/methods/frenchpress">
             <a className="bg-black hover:bg-gray-900 h-96 rounded-2xl flex items-end">
               <span className="mb-4 ml-4 text-white font-medium">
